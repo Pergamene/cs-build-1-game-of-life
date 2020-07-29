@@ -1,8 +1,10 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import ClearIcon from '@material-ui/icons/Clear';
+
+import GenerationsUtils from '../utils/Generations';
 
 import Cell from './Cell';
 
@@ -36,7 +38,7 @@ const Board = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [generation, setGeneration] = useState(0);
   const [lifeData, setLifeData] = useState(new Array(625).fill(false));
-
+    
   const toggleCell = cellId => {
     if (!hasStarted) {
       const newLifeData = lifeData.slice();
@@ -44,10 +46,15 @@ const Board = () => {
       setLifeData(newLifeData);
     }
   };
-
+  
   const handlePlay = () => {
-    setHasStarted(true);
     setIsPlaying(true);
+    setHasStarted(true);
+    // while (isPlaying) {
+      let nextGen = GenerationsUtils.nextGeneration(lifeData);
+      setLifeData(nextGen);
+      setGeneration(generation => generation + 1);
+    // }
   };
 
   const handlePause = () => {

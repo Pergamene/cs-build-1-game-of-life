@@ -36,7 +36,7 @@ const Description = () => {
         <li className={classes.item}><b>Oscillators:</b> Return to their initial state after a finite number of generations.</li>
         <li className={classes.item}><b>Spaceships:</b> Translates across the grid.</li>
       </ul>
-      <p className={classes.p}>Many patterns eventually become a combination of still lifes, oscillators, and spaceships.</p>
+      <p className={classes.p}>Many configurations eventually become a combination of these patterns.</p>
       <h3 className={classes.header}>Rules</h3>
       <ol className={classes.list}>
         <li className={classes.item}>Any live cell with fewer than two live neighbors dies, as if by underpopulation.</li>
