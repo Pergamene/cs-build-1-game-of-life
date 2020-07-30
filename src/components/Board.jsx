@@ -6,19 +6,20 @@ import ClearIcon from '@material-ui/icons/Clear';
 
 import GenerationsUtils from '../utils/Generations';
 
-import Cell from './Cell';
+import Grid from './Grid';
+// import Cell from './Cell';
 
 const useStyles = makeStyles({
   root: {
     width: '625px',
   },
-  grid: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    height: '625px',
-    width: '625px',
-    border: '1px solid #eee',
-  },
+  // grid: {
+  //   display: 'flex',
+  //   flexWrap: 'wrap',
+  //   height: '625px',
+  //   width: '625px',
+  //   border: '1px solid #eee',
+  // },
   interface: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -38,7 +39,10 @@ const Board = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [generation, setGeneration] = useState(0);
   const [lifeData, setLifeData] = useState(new Array(625).fill(false));
-    
+  const [intervalId, setIntervalId] = useState(null);
+
+  console.log('lifeData', lifeData);
+
   const toggleCell = cellId => {
     if (!hasStarted) {
       const newLifeData = lifeData.slice();
@@ -48,20 +52,26 @@ const Board = () => {
   };
   
   const handlePlay = () => {
+    clearInterval(intervalId);
+    setIntervalId(setInterval(nextGen, 3000));
     setIsPlaying(true);
     setHasStarted(true);
-    // while (isPlaying) {
-      let nextGen = GenerationsUtils.nextGeneration(lifeData);
-      setLifeData(nextGen);
-      setGeneration(generation => generation + 1);
-    // }
+  };
+
+  const nextGen = () => {
+    console.log('in nextGen');
+    const nextGen = GenerationsUtils.nextGeneration(lifeData);
+    setLifeData(nextGen);
+    setGeneration(generation + 1);
   };
 
   const handlePause = () => {
+    clearInterval(intervalId);
     setIsPlaying(false);
   };
 
   const handleClear = () => {
+    clearInterval(intervalId);
     setLifeData(new Array(625).fill(false));
     setHasStarted(false);
     setIsPlaying(false);
@@ -70,11 +80,12 @@ const Board = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.grid}>
+      {/* <div className={classes.grid}>
         {lifeData.map((isAlive, cellId) => {
           return <Cell isAlive={isAlive} cellId={cellId} toggleCell={toggleCell} key={cellId} />;
         })}
-      </div>
+      </div> */}
+      <Grid lifeData={lifeData} toggleCell={toggleCell} />
       <div className={classes.interface}>
         <h2 className={classes.counter}>Generation: {generation}</h2>
         <div className={classes.buttons}>
