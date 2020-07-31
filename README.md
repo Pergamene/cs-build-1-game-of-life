@@ -156,26 +156,6 @@ Implement at least 3 of the following features:
 * Explore alternate algorithms for finding the nth generation, such
   as [Hashlife](https://en.wikipedia.org/wiki/Hashlife)
 
-## Sample Wireframe
-
-Example wireframes here. _This is only one possible layout. You can use
-any layout you come up with, as long as it completes MVP._
-
-We encourage you to be creative with your presentation and make it your
-own.
-
-### Mobile
-
-iOS example, could also inspire mobile web.
-
-![wireframe](resources/ios/game-of-life-iOS-mock-1.png)
-![wireframe](resources/ios/game-of-life-iOS-mock-2.png)
-
-### Desktop/Tablet
-
-![wireframe](wireframes/wireframe_1.png)
-
-
 ## Code and Repo Quality
 
 Though this is not currently a requirement, it is a strong suggestion.
