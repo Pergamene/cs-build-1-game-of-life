@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: props => props.isAlive ? '#000' : '#fff',
+    backgroundColor: props => props.isAlive ? props.color : '#fff',
     boxSizing: 'border-box',
     width: '25px',
     height: '25px',
@@ -12,8 +12,8 @@ const useStyles = makeStyles({
 });
 
 const Cell = props => {
-  const { isAlive, cellId, toggleCell } = props;
-  const classes = useStyles({ isAlive });
+  const { isAlive, cellId, toggleCell, color } = props;
+  const classes = useStyles({ isAlive, color });
 
   const handleClick = () => {
     toggleCell(cellId);
